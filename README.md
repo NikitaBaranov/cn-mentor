@@ -3,6 +3,21 @@
 This repository is a quick docker-based way to run the dashboard application 
 locally. 
 
+[Docker and Docker-compose](https://www.docker.com/products/docker-desktop/) are
+required to run this repository.
+
+To check, please run next commands in you terminal:
+```shell
+docker --version
+#example output
+#Docker version 20.10.14, build a224086
+```
+```shell
+docker-compose --version
+#example output
+#docker-compose version 1.29.2, build 5becea4c
+```
+
 ### Source code 
 
 You can find the source code the Frontend and Backend components in separate 
