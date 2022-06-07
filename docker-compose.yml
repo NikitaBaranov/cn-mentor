@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+
+  fe:
+    image: nikitabaranov/cn-mentor-fe:latest
+    environment:
+      REACT_APP_CN_BE_URL: http://localhost:9090
+    ports:
+      - 3000:3000
+
+  be:
+    image: nikitabaranov/cn-mentor-be:latest
+    environment:
+      MONGO_DB_URL: mongodb://root:example@mongo:27017
+      CN_MOODLE_URL: https://platform.codingnomads.co/learn
+    env_file:
+      - .env
+    ports:
+      - 9090:8080
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - data:/data/db
+# Uncomment if you wish to reach MongoDB directly
+#    ports:
+#      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 9091:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+
+volumes:
+  data:
